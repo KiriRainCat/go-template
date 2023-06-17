@@ -6,10 +6,10 @@ import (
 )
 
 type Response struct {
-	Success bool
-	Code    int
-	Msg     string
-	Data    any
+	Success bool   `json:"success"`
+	Code    int    `json:"code"`
+	Msg     string `json:"msg"`
+	Data    any    `json:"data"`
 }
 
 func Success(ctx *gin.Context, msg string, data any) {
