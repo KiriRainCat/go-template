@@ -5,6 +5,7 @@ import (
 	"go-template/Common/Utils"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/schema"
 	"log"
 )
 
@@ -17,7 +18,12 @@ func Init() {
 		Utils.ReadConfigVal("database.host"),
 		Utils.ReadConfigVal("database.name"))
 
-	_, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	_, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
+		NamingStrategy: schema.NamingStrategy{
+			TablePrefix:   Utils.ReadConfigVal("database.table_prefix").(string), // 表前缀
+			SingularTable: true,                                                  // 禁用表名复数
+		},
+	})
 	if err != nil {
 		log.Panicf("Database connection failed: %e", err)
 	}
