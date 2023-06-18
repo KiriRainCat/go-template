@@ -1,9 +1,9 @@
 package Routers
 
 import (
-	"bingchat-gpt4-backend/Common/RestResponse"
-	"bingchat-gpt4-backend/Common/Utils"
 	"github.com/gin-gonic/gin"
+	"go-template/Common/RestResponse"
+	"go-template/Common/Utils"
 )
 
 func Init(server *gin.Engine) {
