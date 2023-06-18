@@ -1,9 +1,9 @@
 package main
 
 import (
-	"bingchat-gpt4-backend/Common/DBConnection"
-	"bingchat-gpt4-backend/Routers"
 	"github.com/gin-gonic/gin"
+	"go-template/Common/DBConnection"
+	"go-template/Routers"
 )
 
 func main() {

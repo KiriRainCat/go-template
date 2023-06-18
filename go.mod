@@ -1,4 +1,4 @@
-module bingchat-gpt4-backend
+module go-template
 
 go 1.20
 

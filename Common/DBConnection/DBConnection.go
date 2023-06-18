@@ -1,8 +1,8 @@
 package DBConnection
 
 import (
-	"bingchat-gpt4-backend/Common/Utils"
 	"fmt"
+	"go-template/Common/Utils"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"log"
