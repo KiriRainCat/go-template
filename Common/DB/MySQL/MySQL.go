@@ -10,7 +10,10 @@ import (
 	"gorm.io/gorm/schema"
 )
 
-var DB *gorm.DB // 指向Database的指针
+var (
+	DB  *gorm.DB // 指向Database的指针
+	err error
+)
 
 func Init() {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%v)/%s?charset=utf8&parseTime=True&loc=Local",
@@ -20,7 +23,7 @@ func Init() {
 		ConfigUtil.ReadConfigVal("database.port"),
 		ConfigUtil.ReadConfigVal("database.name"))
 
-	_, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
+	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
 		NamingStrategy: schema.NamingStrategy{
 			TablePrefix:   ConfigUtil.ReadConfigVal("database.table_prefix").(string), // 表前缀
 			SingularTable: true,                                                       // 禁用表名复数
