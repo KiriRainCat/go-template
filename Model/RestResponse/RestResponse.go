@@ -1,15 +1,16 @@
 package RestResponse
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Response struct {
 	Success bool   `json:"success"`
 	Code    int    `json:"code"`
 	Msg     string `json:"msg"`
-	Data    any    `json:"data"`
+	Data    any    `json:"data,omitempty"`
 }
 
 func Success(ctx *gin.Context, msg string, data any) {
