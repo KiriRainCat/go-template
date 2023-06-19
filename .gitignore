@@ -1,3 +1,7 @@
 /Config/config.yml
 main.exe
 main
+
+# IDE Files
+/*.iml
+.idea/*
