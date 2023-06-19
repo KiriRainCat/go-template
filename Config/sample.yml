@@ -6,6 +6,7 @@ database:
   type: mysql
   username: root
   password: 123456
-  host: localhost:3306
+  host: localhost
+  port: 3306
   name: database
   table_prefix: gt
