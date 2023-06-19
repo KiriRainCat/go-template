@@ -3,6 +3,7 @@ package MySQL
 import (
 	"fmt"
 	"go-template/Common/Util/ConfigUtil"
+	"go-template/Model/Entity"
 	"log"
 
 	"gorm.io/driver/mysql"
@@ -32,4 +33,7 @@ func Init() {
 	if err != nil {
 		log.Panicf("Database connection failed: %e", err)
 	}
+
+	// 自动建(同步)表
+	_ = DB.AutoMigrate(&Entity.User{})
 }
