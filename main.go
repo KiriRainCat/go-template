@@ -1,13 +1,14 @@
 package main
 
 import (
+	"go-template/Common/DB/MySQL"
+	"go-template/Router"
+
 	"github.com/gin-gonic/gin"
-	"go-template/Common/DBConnection"
-	"go-template/Routers"
 )
 
 func main() {
 	server := gin.Default()
-	DBConnection.Init()
-	Routers.Init(server)
+	MySQL.Init()
+	Router.Init(server)
 }

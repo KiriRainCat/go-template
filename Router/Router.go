@@ -1,9 +1,10 @@
-package Routers
+package Router
 
 import (
-	"github.com/gin-gonic/gin"
 	"go-template/Common/RestResponse"
-	"go-template/Common/Utils"
+	"go-template/Common/Util/ConfigUtil"
+
+	"github.com/gin-gonic/gin"
 )
 
 func Init(server *gin.Engine) {
@@ -12,5 +13,5 @@ func Init(server *gin.Engine) {
 		RestResponse.Success(ctx, "", "Pong")
 	})
 
-	_ = server.Run(Utils.ReadConfigVal("server.port").(string))
+	_ = server.Run(ConfigUtil.ReadConfigVal("server.port").(string))
 }

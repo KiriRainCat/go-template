@@ -1,8 +1,9 @@
-package Utils
+package ConfigUtil
 
 import (
-	"github.com/spf13/viper"
 	"log"
+
+	"github.com/spf13/viper"
 )
 
 func ReadConfigVal(key string) any {
