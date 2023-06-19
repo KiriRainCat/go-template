@@ -2,7 +2,7 @@ package MySQL
 
 import (
 	"fmt"
-	"go-template/Common/Utils/ConfigUtil"
+	"go-template/Common/Util/ConfigUtil"
 	"log"
 
 	"gorm.io/driver/mysql"
