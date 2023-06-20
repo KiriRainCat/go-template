@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetUser(ctx *gin.Context) {
+func GetUserByID(ctx *gin.Context) {
 	userID := ctx.Param("id")
 
 	user, err := UserService.GetUserByID(userID)
@@ -32,4 +32,32 @@ func AddUser(ctx *gin.Context) {
 		return
 	}
 	RestResponse.Success(ctx, "", id)
+}
+
+func UpdateUserByID(ctx *gin.Context) {
+	userID := ctx.Param("id")
+
+	var user Entity.User
+	if err := ctx.BindJSON(&user); err != nil {
+		RestResponse.ArgumentError(ctx)
+		return
+	}
+
+	affected, err := UserService.UpdateUserByID(userID, user)
+	if err != nil {
+		RestResponse.Failure(ctx, err.Error())
+		return
+	}
+	RestResponse.Success(ctx, "", affected)
+}
+
+func DeleteUserByID(ctx *gin.Context) {
+	userID := ctx.Param("id")
+
+	affected, err := UserService.DeleteUserByID(userID)
+	if err != nil {
+		RestResponse.Failure(ctx, err.Error())
+		return
+	}
+	RestResponse.Success(ctx, "", affected)
 }

@@ -16,8 +16,10 @@ func Init(server *gin.Engine) {
 
 	user := baseGroup.Group("/user")
 	{
-		user.GET("/:id", UserController.GetUser)
+		user.GET("/:id", UserController.GetUserByID)
 		user.POST("", UserController.AddUser)
+		user.PUT("/:id", UserController.UpdateUserByID)
+		user.DELETE("/:id", UserController.DeleteUserByID)
 	}
 
 	_ = server.Run(ConfigUtil.ReadConfigVal("server.port").(string))
