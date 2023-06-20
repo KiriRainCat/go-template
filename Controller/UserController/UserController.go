@@ -10,14 +10,10 @@ import (
 
 func GetUser(ctx *gin.Context) {
 	userID := ctx.Param("id")
-	if userID == "" {
-		RestResponse.Failure(ctx, "No empty query")
-		return
-	}
 
-	user := UserService.GetUserByID(userID)
-	if user.ID == 0 {
-		RestResponse.Failure(ctx, "No result found")
+	user, err := UserService.GetUserByID(userID)
+	if err != nil {
+		RestResponse.Failure(ctx, err.Error())
 		return
 	}
 	RestResponse.Success(ctx, "", user)
@@ -25,15 +21,15 @@ func GetUser(ctx *gin.Context) {
 
 func AddUser(ctx *gin.Context) {
 	var user Entity.User
-	_ = ctx.BindJSON(&user)
-	if user.Username == "" || user.Password == "" {
-		RestResponse.Failure(ctx, "No empty query")
+	if err := ctx.BindJSON(&user); err != nil {
+		RestResponse.ArgumentError(ctx)
 		return
 	}
 
-	if UserService.AddUser(user) != nil {
-		RestResponse.Failure(ctx, "DB insert error")
+	id, err := UserService.AddUser(user)
+	if err != nil {
+		RestResponse.Failure(ctx, err.Error())
 		return
 	}
-	RestResponse.Success(ctx, "", user.Username)
+	RestResponse.Success(ctx, "", id)
 }
