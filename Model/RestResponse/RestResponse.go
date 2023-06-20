@@ -15,7 +15,7 @@ type Response struct {
 
 func Success(ctx *gin.Context, msg string, data any) {
 	if msg == "" {
-		msg = "Success"
+		msg = "success"
 	}
 	ctx.JSON(http.StatusOK, &Response{
 		Success: true,
@@ -26,10 +26,22 @@ func Success(ctx *gin.Context, msg string, data any) {
 }
 
 func Failure(ctx *gin.Context, msg string) {
+	if msg == "" {
+		msg = "failure"
+	}
 	ctx.JSON(http.StatusOK, &Response{
 		Success: false,
 		Code:    http.StatusBadRequest,
 		Msg:     msg,
+		Data:    nil,
+	})
+}
+
+func ArgumentError(ctx *gin.Context) {
+	ctx.JSON(http.StatusBadRequest, &Response{
+		Success: false,
+		Code:    http.StatusBadRequest,
+		Msg:     "argument_error",
 		Data:    nil,
 	})
 }
