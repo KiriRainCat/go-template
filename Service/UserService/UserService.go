@@ -5,6 +5,11 @@ import (
 	"go-template/Model/Entity"
 )
 
+func GetUserList() (users []Entity.User, err error) {
+	err = MySQL.DB.Find(&users).Error
+	return
+}
+
 func GetUserByID(id string) (res Entity.User, err error) {
 	err = MySQL.DB.First(&res, "id = ?", id).Error
 	return

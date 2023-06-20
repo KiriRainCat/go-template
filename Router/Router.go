@@ -16,6 +16,7 @@ func Init(server *gin.Engine) {
 
 	user := baseGroup.Group("/user")
 	{
+		user.GET("", UserController.GetUserList)
 		user.GET("/:id", UserController.GetUserByID)
 		user.POST("", UserController.AddUser)
 		user.PUT("/:id", UserController.UpdateUserByID)

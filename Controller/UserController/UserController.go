@@ -8,6 +8,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func GetUserList(ctx *gin.Context) {
+	users, err := UserService.GetUserList()
+	if err != nil {
+		RestResponse.Failure(ctx, err.Error())
+		return
+	}
+	RestResponse.Success(ctx, "", users)
+}
+
 func GetUserByID(ctx *gin.Context) {
 	userID := ctx.Param("id")
 
